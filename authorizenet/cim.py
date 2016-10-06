@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 import re
 import xml.dom.minidom
+from collections import OrderedDict
 
-from django.utils.datastructures import SortedDict
 from authorizenet.conf import settings
 import requests
 
@@ -449,7 +450,7 @@ class CreateProfileRequest(BasePaymentProfileRequest,
         super(CreateProfileRequest,
               self).__init__("createCustomerProfileRequest")
         # order is important here, and OrderedDict not available < Python 2.7
-        self.customer_info = SortedDict()
+        self.customer_info = OrderedDict()
         self.customer_info['merchantCustomerId'] = customer_id
         self.customer_info['description'] = customer_description
         self.customer_info['email'] = customer_email
